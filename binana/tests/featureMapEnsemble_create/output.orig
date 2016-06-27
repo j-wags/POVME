@@ -1,0 +1,72 @@
+Beginning Coord2BitVecPos
+Finished Coord2BitVecPos
+Starting BitVector construction
+Finished that too.
+my_FME.getBitVector()
+[[ True False False ...,  True  True  True]
+ [ True False False ..., False  True False]
+ [ True  True False ...,  True  True False]
+ ..., 
+ [ True  True False ...,  True  True False]
+ [ True False False ..., False  True False]
+ [ True False  True ..., False  True False]]
+
+my_FME.getNumFeatureMaps()
+10
+Saving file to output.npz
+Finished saving to file
+overlap between frame 0 and 0 is 1842
+overlap between frame 0 and 1 is 1612
+overlap between frame 0 and 2 is 1445
+overlap between frame 0 and 3 is 1350
+overlap between frame 0 and 4 is 1482
+overlap between frame 0 and 5 is 1842
+overlap between frame 0 and 6 is 1612
+overlap between frame 0 and 7 is 1445
+overlap between frame 0 and 8 is 1350
+overlap between frame 0 and 9 is 1482
+overlap between frame 1 and 1 is 2185
+overlap between frame 1 and 2 is 1678
+overlap between frame 1 and 3 is 1510
+overlap between frame 1 and 4 is 1736
+overlap between frame 1 and 5 is 1612
+overlap between frame 1 and 6 is 2185
+overlap between frame 1 and 7 is 1678
+overlap between frame 1 and 8 is 1510
+overlap between frame 1 and 9 is 1736
+overlap between frame 2 and 2 is 2118
+overlap between frame 2 and 3 is 1468
+overlap between frame 2 and 4 is 1573
+overlap between frame 2 and 5 is 1445
+overlap between frame 2 and 6 is 1678
+overlap between frame 2 and 7 is 2118
+overlap between frame 2 and 8 is 1468
+overlap between frame 2 and 9 is 1573
+overlap between frame 3 and 3 is 1900
+overlap between frame 3 and 4 is 1456
+overlap between frame 3 and 5 is 1350
+overlap between frame 3 and 6 is 1510
+overlap between frame 3 and 7 is 1468
+overlap between frame 3 and 8 is 1900
+overlap between frame 3 and 9 is 1456
+overlap between frame 4 and 4 is 2102
+overlap between frame 4 and 5 is 1482
+overlap between frame 4 and 6 is 1736
+overlap between frame 4 and 7 is 1573
+overlap between frame 4 and 8 is 1456
+overlap between frame 4 and 9 is 2102
+overlap between frame 5 and 5 is 1842
+overlap between frame 5 and 6 is 1612
+overlap between frame 5 and 7 is 1445
+overlap between frame 5 and 8 is 1350
+overlap between frame 5 and 9 is 1482
+overlap between frame 6 and 6 is 2185
+overlap between frame 6 and 7 is 1678
+overlap between frame 6 and 8 is 1510
+overlap between frame 6 and 9 is 1736
+overlap between frame 7 and 7 is 2118
+overlap between frame 7 and 8 is 1468
+overlap between frame 7 and 9 is 1573
+overlap between frame 8 and 8 is 1900
+overlap between frame 8 and 9 is 1456
+overlap between frame 9 and 9 is 2102

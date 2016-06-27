@@ -97,7 +97,7 @@ def runTests(args):
                     print 'Removing', file_to_remove
                     os.system('rm %s' %(file_to_remove))
             print "RUNNING TEST %s" %(linesp)
-            runCommand = '%s python %s > output' %(arunPath, script)
+            runCommand = '%s python %s >& output' %(arunPath, script)
             print "Run command: %s" %(runCommand)
             #os.system('%s python %s > output' %(arunPath,script))
             #print '%s python %s/%s' %(arunPath, directory, script)
@@ -161,8 +161,8 @@ if __name__ == "__main__":
                         help='Offer comparison options if file fails diff',
                         action='store_true')
     parser.add_argument('-r', '--remove_old', 
-                        help='Remove existing files with .orig complements before running',
-                        action='store_true')
+                        help='Remove existing files with .orig counterparts before running',
+                        action='store_false')
 
     args = parser.parse_args()
     

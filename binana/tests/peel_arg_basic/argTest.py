@@ -18,7 +18,7 @@ my_peel = peel.peel(arg, my_params)
 my_peel.write_vmd_script('visualize_arg.vmd', peel.defaultParams)
 
 
-my_feature_maps = my_peel.create_feature_maps([-10,15,-5,15,-10,15], 1)
+my_feature_maps = my_peel.create_feature_maps([-10,15,-5,15,-10,15], 0.25)
 my_feature_maps['hbondAcceptor'].write_pdb('HBA.pdb')
 my_feature_maps['hbondAcceptor'].write_dx_file('HBA.dx')
 my_feature_maps['hbondDonor'].write_pdb('HBD.pdb')

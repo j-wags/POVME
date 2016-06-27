@@ -192,7 +192,7 @@ class main():
 
         print "Starting Tanimoto calculations"
 
-        print "Overlap Matrix for Tanimoto calculation"
+        #print "Overlap Matrix for Tanimoto calculation"
         tanimoto_matrix = numpy.empty([file_input.frames,file_input.frames],dtype=float)
 
         for f1 in range(num_frames):
