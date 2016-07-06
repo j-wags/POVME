@@ -657,7 +657,8 @@ proc ::povme2::povme2_addshape {color {mode inclusion} {shape_str ""} } {
     set ::povme2::shape_x [format {%0.3f} [lindex $coords 0]] ;# find the center of the entire molecule
     set ::povme2::shape_y [format {%0.3f} [lindex $coords 1]]
     set ::povme2::shape_z [format {%0.3f} [lindex $coords 2]]
-    set ::povme2::shape_r [format {%0.3f} [veclength $size]]
+    #set ::povme2::shape_r [format {%0.3f} [veclength $size]]
+    set ::povme2::shape_r [format {%0.3f} 10 ]
     set ::povme2::shape_width [format {%0.3f} [veclength $size]]
     set ::povme2::shape_height [format {%0.3f} [veclength $size]]
     set ::povme2::shape_depth [format {%0.3f} [veclength $size]]
