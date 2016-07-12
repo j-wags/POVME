@@ -391,11 +391,11 @@ class Cluster():
                         prefixMatch = trajPrefix
                     else: # If a matching prefix has already been found
                         raise Exception('ERROR - file %s matches prefix %s and %s' %(npyFileName, trajPrefix, prefixMatch))
-            ## If no prefix-to-pdb mapping was found, assume that the pdb is named the same as the npy file  
-            if prefixMatch == '':
-                trajFileName = npyFilePrefix + '.pdb'
-            else:
-                trajFileName = self.prefixToTrajectory[prefixMatch]
+            ## Disabled this block - All prefix-to-trajectory matching should be explicit. This caused an error when POVME was run whith a blank prefix
+            #if prefixMatch == '':
+            #    trajFileName = npyFilePrefix + '.pdb'
+            #else:
+            trajFileName = self.prefixToTrajectory[prefixMatch]
 
             ## Figure out the directory and filename that this frame should be written to    
             outputDir = '%scluster%i' %(outputPrefix, thisCluster)
