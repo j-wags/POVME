@@ -836,6 +836,8 @@ class MultithreadingCalcVolumeTask(MultithreadingTaskGeneral):
         print 'STARTING CALC VOLUME'#,hp.heap()
         print '---------------------------------'
 
+        import peel
+
         frame_indx = item[0]
         pdb = item[1]
         parameters = item[2]
@@ -845,6 +847,15 @@ class MultithreadingCalcVolumeTask(MultithreadingTaskGeneral):
         # if the user wants to save empty points (points that are removed), then we need a copy of the original
         #if parameters['OutputEqualNumPointsPerFrame'] == True:
         pts_orig_temp = pts.copy()
+        # Adjust for the coloring skin distance, to get the max possible # of points for color maps
+        color_skin_distance = 2
+        max_color_pts_fm = peel.featureMap.fromPovmeList(pts.copy(),
+                                                            skinDistance=color_skin_distance)
+        for i in range(int(color_skin_distance+1)):
+            max_color_pts_fm.grow_region()
+        max_color_pts = max_color_pts_fm.toPovmeList()
+        
+        
 
         # you may need to load it from disk if the user so specified
         #if parameters['UseDiskNotMemory'] == True: # so you need to load it from disk
@@ -1026,12 +1037,11 @@ class MultithreadingCalcVolumeTask(MultithreadingTaskGeneral):
         extra_data_to_add['SaveVolumetricDensity'] = pts
 
         #if parameters['SaveColoredMap'] == True:
-        import peel
         colorIntensityThreshold = 0.02
         #By default, this will do all colors ('hbondAcceptor','hbondDonor','aromatic','hydrophobic', 'hydrophilic', 'hydrophobicity')
         my_peel = peel.peel(pdb, peel.defaultParams)
         
-        coloredMaps = my_peel.color_povme_map(pts, parameters['GridSpacing'], skin=2.0)
+        coloredMaps = my_peel.color_povme_map(pts, parameters['GridSpacing'], skin=color_skin_distance)
         ### When this uses pts_copy, it colors features which may be buried on one map
         #coloredMaps = my_peel.color_povme_map(pts_orig_temp, parameters['GridSpacing'])
         extra_data_to_add['SaveColoredMap'] = coloredMaps
@@ -1118,7 +1128,7 @@ class MultithreadingCalcVolumeTask(MultithreadingTaskGeneral):
 
             #pts_deleted = numpy.zeros(pts_deleted.shape) # So extra points will always be at the origin. These can be easily hidden with your visualization software.
             #The above commented out code should work but I was unable to debug it. Instead, here's a much simpler implementation
-            pts_deleted = -99.*numpy.ones((pts_orig_temp.shape[0]-thisMapOverThreshold.shape[0],3))
+            pts_deleted = -99.*numpy.ones((max_color_pts.shape[0]-thisMapOverThreshold.shape[0],3))
             frame_text = frame_text + numpy_to_pdb(pts_deleted,'X',"XXX")
 
             frame_text = frame_text + "END\n"
@@ -1164,6 +1174,8 @@ class MultithreadingDefIncRegByLigTask(MultithreadingTaskGeneral):
         pdb.fileio.load_pym_into(pym_filename)
 
         ligand_atoms = pdb.select_atoms({'resname_stripped':parameters['DefinePocketByLigand']})
+        print parameters['DefinePocketByLigand']
+        print ligand_atoms
         ligand_coords = pdb.get_coordinates()[ligand_atoms].round()
         ligand_coords_set = set([tuple(row) for row in ligand_coords])
         self.results.append(ligand_coords_set)
@@ -1778,7 +1790,7 @@ class runit():
                 
                 # Put them all in one set
                 lig_coords_all_frames_set = set()
-                if len(lig_coords.results) == 0:
+                if len(lig_coords.results[0]) == 0:
                     log('ERROR: No ligand found with resname %s.' %(parameters['DefinePocketByLigand']))
                     raise Exception('ERROR: No ligand found resname %s.' %(parameters['DefinePocketByLigand']))
                 for frame_coords_set in lig_coords.results:
