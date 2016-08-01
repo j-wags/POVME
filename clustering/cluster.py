@@ -346,7 +346,7 @@ class Cluster():
                     cluster_member_strings = ['_'.join(i) for i in zip(cluster_member_prefixes, cluster_member_frame_nums)]
                     of.write(' '.join(cluster_member_strings))
                     of.write('\n')
-                    
+
         if (self.indexToFrame != {}) and (self.prefixToTrajectory != {}):
             print "Extracting trajectory frames"
             matrixIndex2Cluster = {}
@@ -413,7 +413,7 @@ class Cluster():
             framesToExtract[trajFileName][frameNum] = fullOutputFileName
             
         for trajFileName in framesToExtract:
-            frameCounter = 0
+            frameCounter = 1
             frameData = ''
             with open(trajFileName) as fo:
                 for line in fo:
