@@ -426,6 +426,10 @@ class Cluster():
                                 of.write(frameData)
                         frameData = ''
                         frameCounter += 1
+                if frameData != '':
+                    thisOutputFileName = framesToExtract[trajFileName][frameCounter]
+                    with open(thisOutputFileName,'wb') as of:
+                        of.write(frameData)
         return clusterInd2CentFileName
         
     '''                
