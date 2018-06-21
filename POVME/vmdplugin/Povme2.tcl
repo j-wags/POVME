@@ -959,7 +959,7 @@ proc ::povme2::run_povme2 {} {
   # sets iso value for volumetric and color density map visualizations
 
     if { $::povme2::volumetric_density_file == 1 } { ;# load volumetric density
-      set vol_dx_filename "${::povme2::output_filename_prefix}volumetric_density.dx"
+      set vol_dx_filename "${::povme2::output_filename_prefix}frameInfo/volumetric_density.dx"
       if {([file exists $vol_dx_filename] == 1) } { ;# make sure it was modified since running povme2
         if { ([file mtime $vol_dx_filename] >= $starttime)} {
           mol representation Isosurface $::povme2::iso_value 0 0 1 1 1
@@ -977,7 +977,7 @@ proc ::povme2::run_povme2 {} {
       set ::povme2::file_append "_volumetric_density.dx"
       set ::povme2::dict_keys [dict keys $::povme2::feature_dict]
       foreach term $::povme2::dict_keys {
-        set col_dx_filename "${::povme2::output_filename_prefix}$term$::povme2::file_append"
+        set col_dx_filename "${::povme2::output_filename_prefix}frameInfo/$term$::povme2::file_append"
 
         if {[file exists $col_dx_filename] == 1 } {
           set color_num [dict get $::povme2::feature_dict $term]
